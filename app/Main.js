@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, Suspense} from "react";
 import ReactDOM from "react-dom";
 import { useImmerReducer } from "use-immer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8080"
+axios.defaults.baseURL = process.env.BACKENDURL || "https://backendformytodoapp.herokuapp.com"
 
 
 import StateContext from "./StateContext";
@@ -15,15 +15,16 @@ import Header from './components/Header';
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 import Container from "./components/Container";
-import CreatePost from "./components/CreatePost";
-import ViewPost from "./components/ViewPost";
+const CreatePost = React.lazy(() => import("./components/CreatePost"))
+const ViewPost = React.lazy(() => import("./components/ViewPost"))
 import FlashMessages from "./components/FlashMessages";
 import Profile from "./components/Profile";
 import TheTodo from "./components/TheTodo";
 import EditPost from "./components/EditPost";
 import NotFound from "./components/NotFound";
-import Search from "./components/Search";
+const Search = React.lazy(() => import("./components/Search"))
 import Sidebar from "./components/Sidebar";
+import Loading from "./components/Loading";
 
 function Main() {
 
@@ -150,6 +151,7 @@ function Main() {
             <CSSTransition timeout={330} in={state.sidebar} classNames="menu-margin">
           <Container>
             <Header />
+            <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/" exact>
                 {state.loggedIn ? <TheTodo /> : <Content />}
@@ -170,8 +172,13 @@ function Main() {
                 <NotFound />
               </Route>
             </Switch>
+            </Suspense>
             <CSSTransition timeout={330} in={state.searchIsOpen} classNames="search-overlay" unmountOnExit>
-              <Search />
+             <div className="search-overlay">
+               <Suspense fallback="">
+                 <Search />
+               </Suspense>
+             </div>
             </CSSTransition>
             <Footer /> 
           </Container>

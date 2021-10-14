@@ -5,10 +5,10 @@ import HeaderLoggedIn from "./HeaderLoggedIn"
 import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
 
-function Header() {
+function Header(props) {
   const globalState = useContext(StateContext)
   const globalDispatch = useContext(DispatchContext)
-
+  const headerContent = globalState.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />
 
  const handleSidebar = (e) => {
   e.preventDefault()
@@ -27,7 +27,7 @@ function Header() {
             Brain Notes
           </Link>
         </h4>
-        {globalState.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
+        {!props.staticEmpty ? headerContent : ""}
       </div>
     </header>
     </>
