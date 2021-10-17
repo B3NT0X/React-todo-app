@@ -79,7 +79,7 @@ function ViewPost(props) {
           
         </div>
   
-        <p className="text-muted small mb-4">
+        <p style={{color: "var(--text-color)"}} className="small mb-4">
           <Link to={`/profile/${post.author.username}`}>
             <img className="avatar-tiny" src={post.author.avatar} />
           </Link>
@@ -87,7 +87,7 @@ function ViewPost(props) {
         </p>
   
         <div className="body-content">
-          <p>{post.body}</p>
+          <p style={{color: "var(--text-color)"}}>{post.body}</p>
         </div>
       </div>
   )

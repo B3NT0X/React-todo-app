@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
 import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
-import axios from "axios"
 
 function Sidebar(props) {
     const globalState = useContext(StateContext)
