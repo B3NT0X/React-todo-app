@@ -33,14 +33,14 @@ function CreatePost(props) {
     <div className="container container--narrow py-md-5">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="post-title" className="text-muted mb-1">
+          <label htmlFor="post-title" style={{color: "var(--text-color)"}} className="mb-1">
             <small>Titel</small>
           </label>
           <input value={title} onChange={e => setTitle(e.target.value)} autoFocus name="title" id="post-title" className="form-control form-control-lg form-control-title" type="text" placeholder="" autoComplete="off" />
         </div>
 
         <div className="form-group">
-          <label htmlFor="post-body" className="text-muted mb-1 d-block">
+          <label htmlFor="post-body" style={{color: "var(--text-color)"}} className="mb-1 d-block">
             <small>Nachricht</small>
           </label>
           <textarea value={message} onChange={e => setMessage(e.target.value)} name="body" id="post-body" className="body-content tall-textarea form-control" type="text"></textarea>

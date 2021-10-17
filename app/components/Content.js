@@ -208,8 +208,8 @@ const handleSubmit = (e) => {
       <div className="container py-md-5">
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
-          <h1 className="display-3">Sichere Notizen</h1>
-          <p className="lead">Hier kannst du deine Notizen sicher und schnell ansehen und verwalten.</p>
+          <h1 className="display-3">Brain Notes</h1>
+          <p className="lead">Hier kannst du deine Notizen mit der ganzen Welt teilen, ansehen und verwalten.</p>
         </div>  
         <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
           <form onSubmit={handleSubmit}>

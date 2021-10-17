@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
 
@@ -7,6 +7,17 @@ function TheTodo() {
     const [todoValue, setTodoValue] = useState("")
     const globalDispatch = useContext(DispatchContext)
     const globalState = useContext(StateContext)
+
+      useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('todoValue'));
+        if (items) {
+          globalDispatch({ type: 'getTodo', items });
+        }
+      }, []);
+    
+      useEffect(() => {
+       localStorage.setItem("todoValue", JSON.stringify(globalState.todo))
+      }, [globalState.todo]);
 
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -30,7 +41,6 @@ function TheTodo() {
     const capitalize = str => {
       return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
     }
-    
 
   return ( 
     <div className="container">

@@ -1,22 +1,22 @@
 import React, { useContext } from "react"
-import StateContext from "../StateContext"
-import DispatchContext from "../DispatchContext"
+// import StateContext from "../StateContext"
+// import DispatchContext from "../DispatchContext"
 
 function Container(props) {
-  const globalState = useContext(StateContext)
-  const globalDispatch = useContext(DispatchContext)
+  // const globalState = useContext(StateContext)
+  // const globalDispatch = useContext(DispatchContext)
 
-  const closePopup = () => {
-    if(globalState.popup) {
+  // const closePopup = () => {
+  //   if(globalState.popup) {
     
-      globalDispatch({type: "closePopup"})
+  //     globalDispatch({type: "closePopup"})
     
-  }
-  }
+  // }
+  // }
 
   return (
     <>
-        <div onClick={closePopup} className={globalState.darkMode ? "theme-dark" : null}>
+        <div className="theme-dark">
           {props.children}
         </div>
     </>

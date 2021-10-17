@@ -28,17 +28,14 @@ import Loading from "./components/Loading";
 
 function Main() {
 
-  
-
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("saveDataToken")),
-    darkMode: Boolean(JSON.parse(localStorage.getItem("darkMode"))),
     flashMessages: [],
     flashMessagesColor: "",
     todo: [],
+    test: JSON.parse(localStorage.getItem("todoValue")),
     sidebar: false,
     completed: false,
-    popup: false,
     searchIsOpen: false,
     user: {
       token: localStorage.getItem("saveDataToken"),
@@ -66,9 +63,6 @@ function Main() {
       case "closeSidebar":
         draft.sidebar = false
         return
-      case "darkMode":
-        draft.darkMode = !draft.darkMode
-        return
       case "addTodo":
         draft.todo.push({id: Date.now(), completed: action.completed, todoValue: action.message})
         return
@@ -81,27 +75,19 @@ function Main() {
           draft.todo[index].completed = !draft.todo[index].completed
         }
         return
-      case "popup":
-        draft.popup = true
-        return
-      case "closePopup":
-        draft.popup = false
-        return
       case "openSearch":
         draft.searchIsOpen = true
         return
       case "closeSearch":
         draft.searchIsOpen = false
         return
+      case "getTodo":
+        draft.todo = action.items
+       return
     }
   }
 
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
-  
-
-  useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(state.darkMode))
-  }, [state.darkMode])
 
   useEffect(() => {
     if(state.loggedIn) {
