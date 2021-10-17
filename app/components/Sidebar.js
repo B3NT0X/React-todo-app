@@ -28,7 +28,7 @@ function Sidebar(props) {
             <Link className="mx-auto pl-2 text-center" to={`/profile/${globalState.user.username}`}>
               <img style={{width: "62px", height:"62px", borderRadius: "32px"}} className="small-header-avatar" src={globalState.user.avatar} />
             </Link>
-            <strong><p className="text-center">{capitalize(globalState.user.username)}</p></strong>
+            <strong><p style={{color:"#fff"}} className="text-center">{capitalize(globalState.user.username)}</p></strong>
                 <Link className="btn btn-sm btn-success mx-auto w-100" to="/create-post">
                     Erstelle Beitrag
                 </Link>
